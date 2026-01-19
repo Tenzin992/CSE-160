@@ -1,0 +1,109 @@
+<!--
+Name: Tenzin Lekphel
+Email: ftenzinl@ucsc.edu
+Assignment 1: Painting Application
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Painting Application</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      canvas {
+        border: 1px solid black;
+        display: block;
+        margin-bottom: 20px;
+      }
+      .controls {
+        max-width: 400px;
+      }
+      .control-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: inline-block;
+        width: 180px;
+      }
+      input[type="range"] {
+        width: 200px;
+      }
+      button {
+        padding: 8px 16px;
+        margin: 5px;
+        cursor: pointer;
+      }
+      .active {
+        background-color: #4CAF50;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <h1>Painting Application</h1>
+    
+    <canvas id="webgl" width="400" height="400">
+    </canvas>
+    
+    <div class="controls">
+      <div class="control-group">
+        <button id="clearBtn" onclick="clearCanvas()">Clear Canvas</button>
+      </div>
+      
+      <div class="control-group">
+        <strong>Drawing Mode:</strong><br>
+        <button id="squareBtn" onclick="selectMode('square')">Squares</button>
+        <button id="triangleBtn" onclick="selectMode('triangle')" class="active">Triangles</button>
+        <button id="circleBtn" onclick="selectMode('circle')">Circles</button>
+      </div>
+      
+      <div class="control-group">
+        <strong>Shape Color:</strong><br>
+        <label for="redSlider">Red</label>
+        <input type="range" id="redSlider" min="0" max="1" step="0.01" value="1.0">
+        <span id="redValue">1.0</span><br>
+        
+        <label for="greenSlider">Green</label>
+        <input type="range" id="greenSlider" min="0" max="1" step="0.01" value="0.0">
+        <span id="greenValue">0.0</span><br>
+        
+        <label for="blueSlider">Blue</label>
+        <input type="range" id="blueSlider" min="0" max="1" step="0.01" value="0.0">
+        <span id="blueValue">0.0</span>
+      </div>
+      
+      <div class="control-group">
+        <label for="sizeSlider">Shape Size:</label>
+        <input type="range" id="sizeSlider" min="5" max="50" step="1" value="20">
+        <span id="sizeValue">20</span>
+      </div>
+      
+      <div class="control-group">
+        <label for="segmentSlider">(Circles) Segment Count:</label>
+        <input type="range" id="segmentSlider" min="3" max="20" step="1" value="10">
+        <span id="segmentValue">10</span>
+      </div>
+      
+      <div class="control-group">
+        <label for="alphaSlider">Transparency (Alpha):</label>
+        <input type="range" id="alphaSlider" min="0" max="1" step="0.01" value="1.0">
+        <span id="alphaValue">1.0</span>
+        <br>
+  <small><em>Note: Alpha transparency slider is my awesomeness feature - allows layered, semi-transparent painting!</em></small>
+</div>
+      
+      <div class="control-group">
+        <button id="drawPictureBtn" onclick="drawMyPicture()">Draw My Picture (TL Initials)</button>
+      </div>
+    </div>
+
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/cuon-matrix-cse160.js"></script>
+    <script src="asg1.js"></script>
+  </body>
+</html>
