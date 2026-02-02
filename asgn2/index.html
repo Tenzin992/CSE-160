@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8" />
+	<title>CSE160 Assignment 2 - 3D Giraffe</title>
+	<style>
+		body { font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 20px; }
+		canvas { border: 2px solid #333; display: block; margin: 20px auto; background-color: white; }
+		.controls { max-width: 600px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; }
+		h3 { color: #333; border-bottom: 2px solid #ff9800; padding-bottom: 5px; }
+		.slider-container { margin: 10px 0; }
+		label { display: inline-block; min-width: 150px; }
+		input[type="range"] { width: 300px; }
+		button { background-color: #ff9800; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+		#fpsCounter { text-align: center; font-weight: bold; color: #666; margin: 10px 0; }
+	</style>
+  </head>
+
+  <body>
+	<h1 style="text-align: center; color: #333;">CSE160 Assignment 2: 3D Giraffe</h1>
+	
+	<canvas id="webgl" width="600" height="600">
+		Please use a browser that supports "canvas"
+	</canvas>
+
+	<div id="fpsCounter">FPS: Loading...</div>
+
+	<div class="controls">
+		<h3>Camera Controls</h3>
+		<div class="slider-container">
+			<label>Rotation Y:</label>
+			<input type="range" min="-180" max="180" value="0" id="globalRotationSlider_y">
+		</div>
+		<div class="slider-container">
+			<label>Rotation X:</label>
+			<input type="range" min="-180" max="180" value="0" id="globalRotationSlider_x">
+		</div>
+
+		<h3>Neck Controls (3-Level Chain)</h3>
+		<div class="slider-container">
+			<label>Lower Neck:</label>
+			<input type="range" min="-60" max="60" value="0" id="neckLowerSlider">
+		</div>
+		<div class="slider-container">
+			<label>Middle Neck:</label>
+			<input type="range" min="-60" max="60" value="0" id="neckMiddleSlider">
+		</div>
+		<div class="slider-container">
+			<label>Upper Neck:</label>
+			<input type="range" min="-60" max="60" value="0" id="neckUpperSlider">
+		</div>
+
+		<h3>Head & Legs</h3>
+		<div class="slider-container">
+			<label>Head Rotation:</label>
+			<input type="range" min="-45" max="45" value="0" id="headRotationSlider">
+		</div>
+		<div class="slider-container">
+			<label>Front Left Leg:</label>
+			<input type="range" min="-60" max="60" value="0" id="legFrontLeftSlider">
+		</div>
+		<div class="slider-container">
+			<label>Front Right Leg:</label>
+			<input type="range" min="-60" max="60" value="0" id="legFrontRightSlider">
+		</div>
+		<button id="toggleAnimationButton">Toggle Animation</button>
+	</div>
+
+	<script src="./lib/webgl-utils.js"></script>
+	<script src="./lib/webgl-debug.js"></script>
+	<script src="./lib/cuon-utils.js"></script>
+	<script src="./lib/cuon-matrix-cse160.js"></script>
+	<script src="./src/cube.js"></script>
+	<script src="./src/pyramid.js"></script>
+	<script src="./src/asg2.js"></script>
+  </body>
+</html>
