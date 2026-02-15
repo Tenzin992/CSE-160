@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignment 3: Virtual World</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: #000; font-family: monospace; }
+    canvas { display: block; cursor: crosshair; }
+    #hud {
+      position: absolute; top: 10px; left: 10px; color: #0f0;
+      font-size: 14px; text-shadow: 1px 1px 2px #000;
+      pointer-events: none; z-index: 10;
+    }
+    #crosshair {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: white; font-size: 24px; pointer-events: none; z-index: 10;
+    }
+    #instructions {
+      position: absolute; bottom: 10px; left: 10px; color: #ccc;
+      font-size: 12px; pointer-events: none; z-index: 10;
+      background: rgba(0,0,0,0.5); padding: 8px; border-radius: 4px;
+    }
+    #story {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      color: #ff0; font-size: 18px; text-align: center;
+      pointer-events: none; z-index: 10; text-shadow: 2px 2px 4px #000;
+      opacity: 0; transition: opacity 0.5s; max-width: 400px;
+    }
+    #story.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <canvas id="webgl"></canvas>
+  <div id="hud">
+    <div id="fps">FPS: 0</div>
+    <div id="pos">Pos: 0, 0</div>
+    <div id="coins">Coins: 0 / 5</div>
+  </div>
+  <div id="crosshair">+</div>
+  <div id="instructions">
+    WASD: Move | QE/Mouse: Rotate | Click: Place Block | Shift+Click: Remove Block<br>
+    Find all 5 gold coins hidden in the world!
+  </div>
+  <div id="story"></div>
+
+  <!-- Libraries -->
+  <script src="lib/cuon-matrix-cse160.js"></script>
+  <script src="lib/cuon-utils.js"></script>
+  <script src="lib/webgl-utils.js"></script>
+  <script src="lib/webgl-debug.js"></script>
+
+  <!-- Source -->
+  <script src="src/Camera.js"></script>
+  <script src="src/Cube.js"></script>
+  <script src="src/World.js"></script>
+  <script src="src/asg3.js"></script>
+</body>
+</html>
