@@ -1,0 +1,105 @@
+<!--
+Name: Tenzin Lekphel
+Email: ftenzinl@ucsc.edu
+Assignment 4: Lighting
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignment 4: Lighting</title>
+  <style>
+    body { margin: 0; background: #111; font-family: monospace; display: flex; }
+    canvas { display: block; cursor: crosshair; }
+    #hud {
+      position: absolute; top: 10px; left: 10px; color: #0f0;
+      font-size: 13px; text-shadow: 1px 1px 2px #000; pointer-events: none; z-index: 10;
+    }
+    #crosshair {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: white; font-size: 24px; pointer-events: none; z-index: 10;
+    }
+    #controls {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(0,0,0,0.75); color: #eee;
+      padding: 12px; border-radius: 6px; font-size: 12px;
+      z-index: 10; width: 220px;
+    }
+    #controls label { display: block; margin: 6px 0 2px; }
+    #controls input[type=range] { width: 100%; }
+    #controls button {
+      width: 100%; margin: 4px 0; padding: 5px;
+      background: #333; color: #eee; border: 1px solid #555;
+      cursor: pointer; border-radius: 3px;
+    }
+    #controls button:hover { background: #555; }
+    #controls button.active { background: #2a6; color: #fff; }
+    #controls .section { border-top: 1px solid #444; margin-top: 8px; padding-top: 6px; }
+    #instructions {
+      position: absolute; bottom: 10px; left: 10px; color: #ccc;
+      font-size: 11px; pointer-events: none; z-index: 10;
+      background: rgba(0,0,0,0.5); padding: 8px; border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="webgl"></canvas>
+
+  <div id="hud">
+    <div id="fps">FPS: 0</div>
+    <div id="pos">Pos: 0, 0</div>
+  </div>
+  <div id="crosshair">+</div>
+
+  <div id="controls">
+    <b>Lighting Controls</b>
+    <div class="section">
+      <button id="btnLighting" class="active" onclick="toggleLighting()">Lighting: ON</button>
+      <button id="btnNormals" onclick="toggleNormals()">Normal Vis: OFF</button>
+    </div>
+    <div class="section">
+      <b>Point Light</b>
+      <button id="btnPointLight" class="active" onclick="togglePointLight()">Point Light: ON</button>
+      <label>Height: <span id="lblLightY">2.0</span></label>
+      <input type="range" id="sliderLightY" min="-5" max="10" step="0.1" value="2" oninput="updateLightY(this.value)">
+      <label>Orbit Speed: <span id="lblLightSpeed">1.0</span></label>
+      <input type="range" id="sliderLightSpeed" min="0" max="5" step="0.1" value="1" oninput="updateLightSpeed(this.value)">
+      <label>Light R: <span id="lblLR">1.0</span></label>
+      <input type="range" id="sliderLR" min="0" max="1" step="0.05" value="1" oninput="updateLightColor('r', this.value)">
+      <label>Light G: <span id="lblLG">1.0</span></label>
+      <input type="range" id="sliderLG" min="0" max="1" step="0.05" value="1" oninput="updateLightColor('g', this.value)">
+      <label>Light B: <span id="lblLB">1.0</span></label>
+      <input type="range" id="sliderLB" min="0" max="1" step="0.05" value="1" oninput="updateLightColor('b', this.value)">
+    </div>
+    <div class="section">
+      <b>Spot Light</b>
+      <button id="btnSpotLight" class="active" onclick="toggleSpotLight()">Spot Light: ON</button>
+      <label>Cutoff Angle: <span id="lblCutoff">20</span>°</label>
+      <input type="range" id="sliderCutoff" min="1" max="60" step="1" value="20" oninput="updateCutoff(this.value)">
+      <label>Spot Exponent: <span id="lblSpotExp">15</span></label>
+      <input type="range" id="sliderSpotExp" min="1" max="64" step="1" value="15" oninput="updateSpotExp(this.value)">
+    </div>
+    <div class="section">
+      <label>Camera Angle: <span id="lblCamAngle">0</span>°</label>
+      <input type="range" id="sliderCam" min="-180" max="180" step="1" value="0" oninput="updateCamAngle(this.value)">
+    </div>
+  </div>
+
+  <div id="instructions">
+    WASD: Move | Mouse: Look (click canvas) | QE: Rotate<br>
+    Click: Place block | Shift+Click: Remove block
+  </div>
+
+  <script src="lib/cuon-matrix-cse160.js"></script>
+  <script src="lib/cuon-utils.js"></script>
+  <script src="lib/webgl-utils.js"></script>
+  <script src="lib/webgl-debug.js"></script>
+  <script src="src/Camera.js"></script>
+  <script src="src/Cube.js"></script>
+  <script src="src/Sphere.js"></script>
+  <script src="src/World.js"></script>
+  <script src="src/ObjModel.js"></script>
+  <script src="src/asg4.js"></script>
+</body>
+</html>
