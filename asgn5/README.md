@@ -9,7 +9,5 @@
 - Three.js Docs - https://threejs.org/docs/ (GLTFLoader, PointerLockControls)
 
 **Libraries:**
-- Three.js r164 (via CDN) - High-level 3D graphics library
-- cuon-utils.js, webgl-utils.js - Standard WebGL utility libraries from textbook (kept for compatibility)
-- cuon-matrix-cse160.js - Vector/Matrix library from course materials (kept for compatibility)
-
+- cuon-utils.js, webgl-utils.js - Standard WebGL utility libraries from textbook
+- cuon-matrix-cse160.js - Vector/Matrix library from course materials
